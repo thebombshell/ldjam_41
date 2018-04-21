@@ -1,9 +1,4 @@
-extends PhysicsBody
-
-const ORDER_STOP = 0;
-const ORDER_MOVE = 1;
-const ORDER_INTERACT = 2;
-const ORDER_ATTACK = 3;
+extends "res://scripts/unit/selectable.gd"
 
 const DEFAULT_MAT = preload("res://materials/unit_material.tres");
 const SELECTED_MAT = preload("res://materials/unit_select_material.tres");
@@ -16,26 +11,26 @@ onready var nav = get_node("/root/Scene/World");
 
 onready var mesh = get_node("MeshInstance");
 
-# orders and pathing vars
+# unit vars
 
 var order = 0;
 var target = null;
 var path = null;
 var path_traversed = 0;
+var unit_speed = 200.0;
+var unit_max_health = 10.0;
+var unit_health = 10.0;
+var unit_damage = 1.0;
+var slow_timer = 0.0;
 
-# unit stats vars
+# selectable functionality
 
-var unit_speed = 5.0;
-
-# unit functionality
-
-func unit_set_selected(is_selected):
+func selectable_set_selected(is_selected):
 	
-	print(is_selected);
 	mesh.set_surface_material(0, SELECTED_MAT if is_selected else DEFAULT_MAT);
 	return;
 
-func unit_give_order(new_order, new_target):
+func selectable_give_order(new_order, new_target):
 	
 	order = new_order;
 	target = null if order == ORDER_STOP else new_target;
@@ -52,24 +47,30 @@ func unit_give_order(new_order, new_target):
 
 func traverse_path(delta):
 	
+	if path == null:
+		return;
+	
 	if path_traversed < path.size():
 		
-		var len_traversed = 0.0;
-		var traversed_speed = delta * unit_speed;
-		while len_traversed < traversed_speed && path_traversed < path.size():
-			var next_position = nav.get_closest_point(path[path_traversed]);
-			var distance = next_position - translation;
-			var direction = distance.normalized();
-			distance = min(traversed_speed, distance.length());
-			translation += direction * distance;
-			len_traversed += distance;
-			if translation.distance_squared_to(next_position) < 0.01:
+		slow_timer -= delta;
+		var dist = unit_speed * delta * (0.5 if slow_timer > 0.0 else 1.0);
+		var next_position = nav.get_closest_point_to_segment(path[path_traversed] - Vector3(0.0, 0.25, 0.0), path[path_traversed] + Vector3(0.0, 0.25, 0.0));
+		var direction = (next_position - translation).normalized();
+		var result = move_and_slide(direction * dist, Vector3(0.0, 1.0, 0.0));
+		if result.length() < dist * 0.5:
+			
+			slow_timer += 0.1;
+			if slow_timer > 5.0:
 				
-				path_traversed += 1;
+				slow_timer = 0.0;
+				order = ORDER_STOP;
+				path = null;
+		if translation.distance_squared_to(next_position) < 0.01:
+			
+			path_traversed += 1;
 		
 	else:
 		
-		print("journey complete");
 		if order == ORDER_MOVE:
 			
 			order = ORDER_STOP;
