@@ -3,8 +3,6 @@
 [sub_resource type="ArrayMesh" id=1]
 
 resource_name = "east_slope"
-blend_shape_mode = 1
-custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
 surfaces/0 = {
 "aabb": AABB( -1, 0, -1, 2, 1, 2 ),
 "array_data": PoolByteArray( 0, 188, 0, 0, 0, 188, 0, 60, 200, 113, 0, 0, 113, 56, 0, 129, 141, 6, 141, 6, 0, 60, 0, 60, 0, 188, 0, 60, 200, 113, 0, 0, 113, 56, 0, 129, 255, 59, 141, 6, 0, 60, 0, 60, 0, 60, 0, 60, 200, 113, 0, 0, 113, 56, 0, 129, 255, 59, 255, 59, 0, 188, 0, 0, 0, 60, 0, 60, 200, 113, 0, 0, 113, 56, 0, 129, 142, 6, 255, 59 ),
@@ -16,6 +14,7 @@ surfaces/0 = {
 "skeleton_aabb": [  ],
 "vertex_count": 4
 }
+custom_aabb/custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
 
 [sub_resource type="NavigationMesh" id=2]
 
@@ -52,11 +51,10 @@ data = {
 [sub_resource type="ImageTexture" id=4]
 
 flags = 7
-storage = 0
-lossy_quality = 0.7
-flags = 7
 image = SubResource( 3 )
 size = Vector2( 64, 64 )
+storage = 0
+lossy_quality = 0.7
 
 [sub_resource type="ConcavePolygonShape" id=5]
 
@@ -64,8 +62,6 @@ data = PoolVector3Array( -1, 0, -1, 1, 1, -1, 1, 1, 1, -1, 0, -1, 1, 1, 1, -1, 0
 
 [sub_resource type="ArrayMesh" id=6]
 
-blend_shape_mode = 1
-custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
 surfaces/0 = {
 "aabb": AABB( -1, 0, -1, 2, 1.00001, 2 ),
 "array_data": PoolByteArray( 0, 188, 0, 60, 0, 188, 0, 60, 0, 113, 56, 0, 127, 0, 0, 129, 141, 6, 141, 6, 0, 60, 0, 60, 0, 188, 0, 60, 0, 113, 56, 0, 127, 0, 0, 129, 255, 59, 141, 6, 0, 60, 0, 0, 0, 60, 0, 60, 0, 113, 56, 0, 127, 0, 0, 129, 255, 59, 255, 59, 0, 188, 0, 0, 0, 60, 0, 60, 0, 113, 56, 0, 127, 0, 0, 129, 142, 6, 255, 59 ),
@@ -77,6 +73,7 @@ surfaces/0 = {
 "skeleton_aabb": [  ],
 "vertex_count": 4
 }
+custom_aabb/custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
 
 [sub_resource type="NavigationMesh" id=7]
 
@@ -113,11 +110,10 @@ data = {
 [sub_resource type="ImageTexture" id=9]
 
 flags = 7
-storage = 0
-lossy_quality = 0.7
-flags = 7
 image = SubResource( 8 )
 size = Vector2( 64, 64 )
+storage = 0
+lossy_quality = 0.7
 
 [sub_resource type="ConcavePolygonShape" id=10]
 
@@ -125,8 +121,6 @@ data = PoolVector3Array( -1, 1, -1, 1, 1, -1, 1, 0, 1, -1, 1, -1, 1, 0, 1, -1, 0
 
 [sub_resource type="ArrayMesh" id=11]
 
-blend_shape_mode = 1
-custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
 surfaces/0 = {
 "aabb": AABB( -1, 0, -1, 2, 1e-05, 2 ),
 "array_data": PoolByteArray( 0, 188, 0, 0, 0, 188, 0, 60, 0, 127, 0, 0, 127, 0, 0, 129, 141, 6, 141, 6, 0, 60, 0, 0, 0, 188, 0, 60, 0, 127, 0, 0, 127, 0, 0, 129, 255, 59, 141, 6, 0, 60, 0, 0, 0, 60, 0, 60, 0, 127, 0, 0, 127, 0, 0, 129, 255, 59, 255, 59, 0, 188, 0, 0, 0, 60, 0, 60, 0, 127, 0, 0, 127, 0, 0, 129, 142, 6, 255, 59 ),
@@ -138,6 +132,7 @@ surfaces/0 = {
 "skeleton_aabb": [  ],
 "vertex_count": 4
 }
+custom_aabb/custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
 
 [sub_resource type="NavigationMesh" id=12]
 
@@ -174,11 +169,10 @@ data = {
 [sub_resource type="ImageTexture" id=14]
 
 flags = 7
-storage = 0
-lossy_quality = 0.7
-flags = 7
 image = SubResource( 13 )
 size = Vector2( 64, 64 )
+storage = 0
+lossy_quality = 0.7
 
 [sub_resource type="ConcavePolygonShape" id=15]
 
@@ -186,8 +180,6 @@ data = PoolVector3Array( -1, 0, -1, 1, 0, -1, 1, 0, 1, -1, 0, -1, 1, 0, 1, -1, 0
 
 [sub_resource type="ArrayMesh" id=16]
 
-blend_shape_mode = 1
-custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
 surfaces/0 = {
 "aabb": AABB( -1, 0, -1, 2, 1, 2 ),
 "array_data": PoolByteArray( 0, 188, 0, 0, 0, 188, 0, 60, 0, 113, 200, 0, 127, 0, 0, 129, 141, 6, 141, 6, 0, 60, 0, 0, 0, 188, 0, 60, 0, 113, 200, 0, 127, 0, 0, 129, 255, 59, 141, 6, 0, 60, 0, 60, 0, 60, 0, 60, 0, 113, 200, 0, 127, 0, 0, 129, 255, 59, 255, 59, 0, 188, 0, 60, 0, 60, 0, 60, 0, 113, 200, 0, 127, 0, 0, 129, 142, 6, 255, 59 ),
@@ -199,6 +191,7 @@ surfaces/0 = {
 "skeleton_aabb": [  ],
 "vertex_count": 4
 }
+custom_aabb/custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
 
 [sub_resource type="NavigationMesh" id=17]
 
@@ -235,11 +228,10 @@ data = {
 [sub_resource type="ImageTexture" id=19]
 
 flags = 7
-storage = 0
-lossy_quality = 0.7
-flags = 7
 image = SubResource( 18 )
 size = Vector2( 64, 64 )
+storage = 0
+lossy_quality = 0.7
 
 [sub_resource type="ConcavePolygonShape" id=20]
 
@@ -247,8 +239,6 @@ data = PoolVector3Array( -1, 0, -1, 1, 0, -1, 1, 1, 1, -1, 0, -1, 1, 1, 1, -1, 1
 
 [sub_resource type="ArrayMesh" id=21]
 
-blend_shape_mode = 1
-custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
 surfaces/0 = {
 "aabb": AABB( -1, 0, -1, 2, 1.00001, 2 ),
 "array_data": PoolByteArray( 0, 188, 0, 60, 0, 188, 0, 60, 56, 113, 0, 0, 113, 200, 0, 129, 141, 6, 141, 6, 0, 60, 0, 0, 0, 188, 0, 60, 56, 113, 0, 0, 113, 200, 0, 129, 255, 59, 141, 6, 0, 60, 0, 0, 0, 60, 0, 60, 56, 113, 0, 0, 113, 200, 0, 129, 255, 59, 255, 59, 0, 188, 0, 60, 0, 60, 0, 60, 56, 113, 0, 0, 113, 200, 0, 129, 142, 6, 255, 59 ),
@@ -260,6 +250,7 @@ surfaces/0 = {
 "skeleton_aabb": [  ],
 "vertex_count": 4
 }
+custom_aabb/custom_aabb = AABB( 0, 0, 0, 0, 0, 0 )
 
 [sub_resource type="NavigationMesh" id=22]
 
@@ -296,11 +287,10 @@ data = {
 [sub_resource type="ImageTexture" id=24]
 
 flags = 7
-storage = 0
-lossy_quality = 0.7
-flags = 7
 image = SubResource( 23 )
 size = Vector2( 64, 64 )
+storage = 0
+lossy_quality = 0.7
 
 [sub_resource type="ConcavePolygonShape" id=25]
 

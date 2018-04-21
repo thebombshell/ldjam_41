@@ -40,16 +40,31 @@ func selectable_give_order(new_order, new_target):
 	
 	return;
 
+func selectable_get_action_names():
+	
+	var output = ["Build Unit"];
+	return output;
+
+func selectable_on_action(action_name):
+	
+	if action_name == "Destroy":
+		print("I WILL NEVER DIE!!!");
+	
+	if action_name == "Build Unit":
+		
+		structure_spawn_unit(Unit);
+	
+	return;
+
 # structure functions
 
 func structure_spawn_unit(unit_node):
 	
 	var unit = unit_node.instance();
-	unit.translation = translation + Vector3(0.0, 0.0, 2.0);
+	var angle = rand_range(0.0, 360.0);
+	unit.translation = translation + Vector3(cos(angle), 0.0, sin(angle)) * 1.5;
 	world.add_child(unit);
-	if rally_point != null:
-		
-		unit.selectable_move_order(rally_point);
+	unit.selectable_move_order(rally_point if rally_point != null else (translation + Vector3(0.0, 0.0, 3.0)));
 	
 	return unit;
 
@@ -59,9 +74,5 @@ func _ready():
 	return;
 
 func _process(delta):
-	
-	if Input.is_action_just_pressed("debug_0"):
-		
-		structure_spawn_unit(Unit);
 	
 	return;

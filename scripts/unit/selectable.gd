@@ -30,7 +30,7 @@ func selectable_get_action_names():
 func selectable_on_action(action_name):
 	
 	if action_name == "Destroy":
-		selectable_destroy();
+		call_deferred("selectable_destroy");
 	
 	return;
 

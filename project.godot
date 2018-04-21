@@ -11,14 +11,24 @@ config_version=3
 [application]
 
 config/name="ldjam_41"
-run/main_scene="res://scenes/test_scenes.tscn"
+run/main_scene="res://scenes/test_scenes_backup.tscn"
+run/low_processor_mode=true
 config/icon="res://icon.png"
+
+[debug]
+
+settings/stdout/print_fps=false
+settings/stdout/verbose_stdout=true
 
 [display]
 
 window/size/width=1280
 window/size/height=720
 window/stretch/mode="2d"
+
+[gdnative]
+
+singletons=[  ]
 
 [input]
 
@@ -49,6 +59,31 @@ debug_8=[ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"
 debug_9=[ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777359,"unicode":0,"echo":false,"script":null)
  ]
 
+[logging]
+
+file_logging/enable_file_logging=true
+
+[memory]
+
+limits/message_queue/max_size_kb=4096
+
+[network]
+
+limits/debugger_stdout/max_messages_per_frame=100
+limits/debugger_stdout/max_errors_per_frame=100
+
+[physics]
+
+common/enable_object_picking=false
+
 [rendering]
 
+quality/shadows/filter_mode=0
+quality/reflections/texture_array_reflections=false
+quality/reflections/high_quality_ggx=false
+quality/shading/force_vertex_shading=true
+quality/depth_prepass/enable=false
+quality/subsurface_scattering/quality=0
+quality/voxel_cone_tracing/high_quality=false
+quality/depth/hdr=false
 environment/default_environment="res://default_env.tres"

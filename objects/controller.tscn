@@ -1,10 +1,42 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/controller/controller.gd" type="Script" id=1]
+[ext_resource path="res://themes/controller_theme.tres" type="Theme" id=2]
+[ext_resource path="res://themes/controller_panel.tres" type="StyleBox" id=3]
+[ext_resource path="res://textures/portrait.png" type="Texture" id=4]
 
 [sub_resource type="ConvexPolygonShape" id=1]
 
 points = PoolVector3Array(  )
+
+[sub_resource type="StyleBoxFlat" id=2]
+
+content_margin_left = -1.0
+content_margin_right = -1.0
+content_margin_top = -1.0
+content_margin_bottom = -1.0
+bg_color = Color( 0, 0, 0, 0.121569 )
+draw_center = true
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color( 0.8, 0.8, 0.8, 1 )
+border_blend = true
+corner_radius_top_left = 0
+corner_radius_top_right = 0
+corner_radius_bottom_right = 0
+corner_radius_bottom_left = 0
+corner_detail = 8
+expand_margin_left = 0.0
+expand_margin_right = 0.0
+expand_margin_top = 0.0
+expand_margin_bottom = 0.0
+shadow_color = Color( 0, 0, 0, 0.6 )
+shadow_size = 0
+anti_aliasing = true
+anti_aliasing_size = 1
+_sections_unfolded = [ "Border", "Border Width" ]
 
 [node name="Controller" type="Spatial"]
 
@@ -63,7 +95,28 @@ rotation = 0.0
 scale = Vector2( 1, 1 )
 transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 
-[node name="Container" type="VBoxContainer" parent="UI" index="0"]
+[node name="SelectBox" type="Panel" parent="UI" index="0"]
+
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 93.0
+margin_top = 326.0
+margin_right = 561.0
+margin_bottom = 577.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+theme = ExtResource( 2 )
+custom_styles/panel = SubResource( 2 )
+_sections_unfolded = [ "custom_colors" ]
+
+[node name="Container" type="VBoxContainer" parent="UI" index="1"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -77,6 +130,7 @@ mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+theme = ExtResource( 2 )
 alignment = 0
 _sections_unfolded = [ "Anchor", "Grow Direction", "Rect", "Visibility" ]
 
@@ -87,13 +141,14 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 1280.0
-margin_bottom = 71.0
+margin_bottom = 50.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 3
+theme = ExtResource( 2 )
 alignment = 0
 _sections_unfolded = [ "Margin", "Rect", "Size Flags" ]
 
@@ -104,13 +159,16 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 1280.0
-margin_bottom = 71.0
+margin_bottom = 50.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource( 2 )
+custom_styles/panel = ExtResource( 3 )
+_sections_unfolded = [ "custom_styles" ]
 
 [node name="Center" type="HBoxContainer" parent="UI/Container" index="1"]
 
@@ -118,18 +176,112 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 75.0
+margin_top = 54.0
 margin_right = 1280.0
-margin_bottom = 644.0
+margin_bottom = 664.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 3
-size_flags_stretch_ratio = 8.0
+size_flags_stretch_ratio = 12.0
+theme = ExtResource( 2 )
 alignment = 0
 _sections_unfolded = [ "Size Flags" ]
+
+[node name="Control" type="Control" parent="UI/Container/Center" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 1020.0
+margin_bottom = 610.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+_sections_unfolded = [ "Grow Direction", "Size Flags" ]
+
+[node name="Panel" type="Panel" parent="UI/Container/Center" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 1024.0
+margin_right = 1280.0
+margin_bottom = 610.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_styles/panel = ExtResource( 3 )
+_sections_unfolded = [ "Size Flags", "custom_styles" ]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Container/Center/Panel" index="0"]
+
+editor/display_folded = true
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 4.0
+margin_right = 259.0
+margin_bottom = 610.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 0
+_sections_unfolded = [ "Size Flags" ]
+
+[node name="TextureRect" type="TextureRect" parent="UI/Container/Center/Panel/VBoxContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 255.0
+margin_bottom = 303.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 11
+size_flags_vertical = 11
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 6
+_sections_unfolded = [ "Anchor", "Margin", "Size Flags" ]
+
+[node name="Label" type="Label" parent="UI/Container/Center/Panel/VBoxContainer" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 307.0
+margin_right = 255.0
+margin_bottom = 610.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 3
+text = "*your date has begun*"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 [node name="Bottom" type="HBoxContainer" parent="UI/Container" index="2"]
 
@@ -137,7 +289,7 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 648.0
+margin_top = 668.0
 margin_right = 1280.0
 margin_bottom = 720.0
 rect_pivot_offset = Vector2( 0, 0 )
@@ -146,6 +298,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 3
+theme = ExtResource( 2 )
 alignment = 0
 _sections_unfolded = [ "Margin", "Mouse", "Rect", "Size Flags" ]
 
@@ -156,7 +309,7 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 156.0
-margin_bottom = 72.0
+margin_bottom = 52.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -164,6 +317,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource( 2 )
 disabled = true
 toggle_mode = false
 enabled_focus_mode = 2
@@ -182,7 +336,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 160.0
 margin_right = 316.0
-margin_bottom = 72.0
+margin_bottom = 52.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -190,6 +344,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource( 2 )
 disabled = true
 toggle_mode = false
 enabled_focus_mode = 2
@@ -208,7 +363,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 320.0
 margin_right = 476.0
-margin_bottom = 72.0
+margin_bottom = 52.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -216,6 +371,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource( 2 )
 disabled = true
 toggle_mode = false
 enabled_focus_mode = 2
@@ -234,7 +390,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 480.0
 margin_right = 636.0
-margin_bottom = 72.0
+margin_bottom = 52.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -242,6 +398,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource( 2 )
 disabled = true
 toggle_mode = false
 enabled_focus_mode = 2
@@ -260,7 +417,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 640.0
 margin_right = 796.0
-margin_bottom = 72.0
+margin_bottom = 52.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -268,6 +425,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource( 2 )
 disabled = true
 toggle_mode = false
 enabled_focus_mode = 2
@@ -286,7 +444,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 800.0
 margin_right = 956.0
-margin_bottom = 72.0
+margin_bottom = 52.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -294,6 +452,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource( 2 )
 disabled = true
 toggle_mode = false
 enabled_focus_mode = 2
@@ -312,7 +471,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 960.0
 margin_right = 1116.0
-margin_bottom = 72.0
+margin_bottom = 52.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -320,6 +479,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource( 2 )
 disabled = true
 toggle_mode = false
 enabled_focus_mode = 2
@@ -338,7 +498,7 @@ anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 1120.0
 margin_right = 1280.0
-margin_bottom = 72.0
+margin_bottom = 52.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 focus_mode = 2
@@ -346,6 +506,7 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 1
+theme = ExtResource( 2 )
 disabled = true
 toggle_mode = false
 enabled_focus_mode = 2
