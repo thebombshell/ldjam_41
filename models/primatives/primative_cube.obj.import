@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/primative_cube.obj-377e6326cf1a757b543188b3c707861e.mesh"
+
+[deps]
+
+files=[ "res://.import/primative_cube.obj-377e6326cf1a757b543188b3c707861e.mesh" ]
+
+source_file="res://models/primatives/primative_cube.obj"
+source_md5="a0268b13aa1e125981b5bef5dff61d7c"
+
+dest_files=[ "res://.import/primative_cube.obj-377e6326cf1a757b543188b3c707861e.mesh", "res://.import/primative_cube.obj-377e6326cf1a757b543188b3c707861e.mesh" ]
+dest_md5="e9a413f2060d43cefb0ee16ae038341c"
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )
