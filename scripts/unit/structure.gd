@@ -38,8 +38,7 @@ func on_unit_damage(damage_amount):
 	health.region_rect.size.x = (unit_health / unit_max_health) * 64.0;
 	if unit_health < 0.0:
 		
-		#lose game
-		unit_health = 0.0;
+		get_tree().change_scene("res://scenes/lose_scene.tscn");
 	
 	return;
 

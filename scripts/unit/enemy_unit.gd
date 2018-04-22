@@ -89,7 +89,7 @@ func process_damage(delta):
 	if enemy != null:
 		
 		enemy.on_unit_damage(unit_damage * delta);
-	
+	area_shape.shape.radius = unit_range;
 	return;
 
 func process_movement(delta):

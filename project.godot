@@ -11,13 +11,9 @@ config_version=3
 [application]
 
 config/name="ldjam_41"
-run/main_scene="res://scenes/test_scenes_backup.tscn"
+run/main_scene="res://scenes/menu.tscn"
 run/low_processor_mode=true
 config/icon="res://icon.png"
-
-[debug]
-
-settings/stdout/print_fps=false
 
 [display]
 
@@ -77,7 +73,6 @@ common/physics_fps=30
 
 [rendering]
 
-threads/thread_model=2
 quality/shadows/filter_mode=0
 quality/reflections/texture_array_reflections=false
 quality/reflections/high_quality_ggx=false

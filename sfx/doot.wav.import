@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/doot.wav-dc76f08691008852a1da3b7275589e34.sample"
+
+[deps]
+
+source_file="res://sfx/doot.wav"
+source_md5="b1e9ad6d7deb07a11a04186d620a2b74"
+
+dest_files=[ "res://.import/doot.wav-dc76f08691008852a1da3b7275589e34.sample" ]
+dest_md5="0f7500d3ce71582631e107b138af745c"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

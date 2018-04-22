@@ -1,0 +1,104 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scripts/menu/test_scene_button.gd" type="Script" id=1]
+
+[node name="Panel" type="Panel"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 1280.0
+margin_bottom = 720.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+_sections_unfolded = [ "Margin" ]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 1280.0
+margin_bottom = 720.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 0
+_sections_unfolded = [ "Margin", "Rect" ]
+
+[node name="Label" type="Label" parent="VBoxContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 1280.0
+margin_bottom = 537.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.0
+text = "Imagine this was a decent menu then select a level!"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Anchor", "Size Flags" ]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 541.0
+margin_right = 1280.0
+margin_bottom = 720.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 0
+_sections_unfolded = [ "Size Flags" ]
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 1280.0
+margin_bottom = 179.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "test"
+flat = false
+align = 1
+script = ExtResource( 1 )
+_sections_unfolded = [ "Size Flags" ]
+
+

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/dialogue-ping-03.wav-4143a958083cf2a04ddac3875c125243.sample"
+
+[deps]
+
+source_file="res://sfx/dialogue-ping-03.wav"
+source_md5="21ccdf595a8026df777dc4c292fe8d92"
+
+dest_files=[ "res://.import/dialogue-ping-03.wav-4143a958083cf2a04ddac3875c125243.sample" ]
+dest_md5="be5f7e30ff16230cc16cff8d1a8960b0"
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

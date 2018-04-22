@@ -2,6 +2,7 @@ extends Spatial
 
 # constants
 
+const Cursor = preload("res://objects/cursor.tscn");
 const cursor = preload("res://textures/cursor.png");
 const cursor_tl = preload("res://textures/cursor_tl.png");
 const cursor_tr = preload("res://textures/cursor_tr.png");
@@ -13,11 +14,23 @@ const cursor_b = preload("res://textures/cursor_b.png");
 const cursor_l = preload("res://textures/cursor_l.png");
 const Selectable = preload("res://scripts/unit/selectable.gd");
 const Dialogue = preload("res://scripts/controller/dialogue.gd");
+const portrait_beaming = preload("res://textures/portrait_beaming.png");
+const portrait_happy = preload("res://textures/portrait_happy.png");
+const portrait_upset = preload("res://textures/portrait_upset.png");
+const portrait_angry = preload("res://textures/portrait_angry.png");
+const sound_perfect = preload("res://sfx/dialogue-ping-01.wav");
+const sound_correct = preload("res://sfx/dialogue-ping-02.wav");
+const sound_wrong = preload("res://sfx/dialogue-ping-03.wav");
+const sound_wierd = preload("res://sfx/dialogue-ping-04.wav");
+const sound_doot = preload("res://sfx/doot.wav");
 const scroll_dist = 100.0;
 const scroll_speed = 20.0;
 const select_project_dist = 32.0;
 
 # absolute objects
+
+onready var world = get_node("/root/Scene/World");
+onready var base = get_node("/root/Scene/World/Base");
 
 # child objects
 
@@ -43,6 +56,8 @@ onready var option_buttons = [
 	get_node("UI/Container/Center/Panel/VBoxContainer/Option_1"),
 	get_node("UI/Container/Center/Panel/VBoxContainer/Option_2"),
 	get_node("UI/Container/Center/Panel/VBoxContainer/Option_3")];
+onready var dialogue_audio = get_node("DialogueAudio");
+onready var cursor_audio = get_node("DialogueAudio");
 
 # selections vars
 
@@ -214,13 +229,11 @@ func center_input(event):
 				var state = get_world().direct_space_state;
 				var result = state.intersect_ray(origin + normal, origin + normal * 128.0, [], 2);
 				if !result.empty():
+					
 					var point = result.position + Vector3(0.0, 1.0, 0.0);
-					print(origin);
-					print(normal);
-					print(point);
-					for body in selected_bodies:
+					if selected_bodies.size() > 0:
 						
-						body.selectable_move_order(point);
+						on_right_click(point);
 	
 	elif event is InputEventMouseMotion:
 		
@@ -231,6 +244,17 @@ func center_input(event):
 			select_box.rect_size = (start - end).abs();
 	
 	return;
+
+func on_right_click(point):
+	
+	var cursor_inst = Cursor.instance();
+	cursor_inst.translation = point;
+	world.add_child(cursor_inst);
+	cursor_audio.stream = sound_doot;
+	cursor_audio.play();
+	for body in selected_bodies:
+		
+		body.selectable_move_order(point);
 
 func action_button(index):
 	
@@ -245,22 +269,37 @@ func option_button(index):
 	if option == current_scenario[1]:
 		
 		tech_streak += 1;
+		tech += tech_streak * 5;
 		happy += 20;
-		dialogue.text = "";
+		dialogue.text = "yup!";
+		dialogue_audio.stop();
+		dialogue_audio.stream = sound_perfect;
+		dialogue_audio.play();
 	elif option == current_scenario[2]:
 		
 		tech_streak = 0;
 		happy += 10;
 		dialogue.text = "hmmm";
+		dialogue_audio.stop();
+		dialogue_audio.stream = sound_correct;
+		dialogue_audio.play();
 	elif option == current_scenario[3]:
 		
+		tech_streak = 0;
 		happy -= 5;
 		dialogue.text = "shut up.";
+		dialogue_audio.stop();
+		dialogue_audio.stream = sound_wrong;
+		dialogue_audio.play();
 	elif option == current_scenario[4]:
 		
+		tech_streak = 0;
 		happy -= 10;
 		wierd += 1;
 		dialogue.text = "Wait WHAT!?";
+		dialogue_audio.stop();
+		dialogue_audio.stream = sound_wierd;
+		dialogue_audio.play();
 	stall_date();
 	
 	return;
@@ -286,6 +325,10 @@ func process_payout(delta):
 			
 			gold += happy;
 			happy -= 5;
+		else:
+			
+			happy = 0.0;
+			base.on_unit_damage(50.0);
 	
 	return;
 
@@ -294,7 +337,20 @@ func process_stats():
 	gold_label.text = "gold: " + str(gold);
 	tech_label.text = "tech: " + str(tech);
 	happy = 0 if happy < 0 else happy;
+	happy = 100 if happy > 100 else happy;
 	happy_label.text = "happy: " + str(happy);
+	if happy > 75:
+		
+		portrait.texture = portrait_beaming;
+	elif happy > 50:
+		
+		portrait.texture = portrait_happy;
+	elif happy > 25:
+		
+		portrait.texture = portrait_upset;
+	else:
+		
+		portrait.texture = portrait_angry;
 	return;
 
 func stall_date():
