@@ -1,7 +1,7 @@
 extends "res://scripts/unit/selectable.gd"
 
-const DEFAULT_MAT = preload("res://materials/unit_material.tres");
-const SELECTED_MAT = preload("res://materials/unit_select_material.tres");
+const DEFAULT_MAT = preload("res://materials/castle_mat.tres");
+const SELECTED_MAT = preload("res://materials/castle_selected_mat.tres");
 
 # constants
 
@@ -19,6 +19,7 @@ onready var world = get_node("/root/Scene/World");
 onready var mesh = get_node("MeshInstance");
 onready var collision = get_node("CollisionShape");
 onready var health = get_node("HealthForeground");
+onready var audio = get_node("AudioStreamPlayer");
 
 # structure vars
 
@@ -68,7 +69,9 @@ func selectable_get_action_names():
 func selectable_on_action(action_name):
 	
 	if action_name == "Destroy":
+		
 		print("I WILL NEVER DIE!!!");
+		return false;
 	
 	if action_name == "Build Worker (50G)":
 		
@@ -76,6 +79,7 @@ func selectable_on_action(action_name):
 			
 			controller.gold -= 50;
 			structure_spawn_unit(Worker);
+			return true;
 	
 	if action_name == "Build Ranger (100G)":
 		
@@ -83,6 +87,7 @@ func selectable_on_action(action_name):
 			
 			controller.gold -= 100;
 			structure_spawn_unit(Ranger);
+			return true;
 	
 	if action_name == "Build Tank (200G)":
 		
@@ -90,8 +95,9 @@ func selectable_on_action(action_name):
 			
 			controller.gold -= 200;
 			structure_spawn_unit(Tank);
+			return true;
 	
-	return;
+	return false;
 
 # structure functions
 

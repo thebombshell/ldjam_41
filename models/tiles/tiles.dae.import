@@ -7,10 +7,10 @@ path="res://.import/tiles.dae-1c40e14f9c306451d2b2f3f7e39e829f.scn"
 [deps]
 
 source_file="res://models/tiles/tiles.dae"
-source_md5="7ae4250ede8adcdcb59faf99423669c8"
+source_md5="f625fc812123234a8135cc13d2ae5df2"
 
 dest_files=[ "res://.import/tiles.dae-1c40e14f9c306451d2b2f3f7e39e829f.scn" ]
-dest_md5="8fa15de355546348e561288c2674bdd9"
+dest_md5="d88d7cc11dde6458c966ca554bfca988"
 
 [params]
 

@@ -13,12 +13,13 @@ func selectable_on_action(action_name):
 	if action_name == "Destroy":
 		
 		call_deferred("selectable_destroy");
+		return true;
 	elif action_name == "Heal":
 		
 		var heal = null;
 		for body in area.get_overlapping_bodies():
 			
-			if body != self && body is Unit:
+			if body != self && body is Unit && !(body is get_script()):
 				
 				if (heal == null && body.unit_health < body.unit_max_health) \
 					|| (heal != null && (body.unit_max_health - body.unit_health) > (heal.unit_max_health - heal.unit_health)):
@@ -29,8 +30,9 @@ func selectable_on_action(action_name):
 			
 			heal.on_unit_damage(-50.0);
 			on_unit_damage(10.0);
+			return true;
 	
-	return;
+	return false;
 
 func _ready():
 	

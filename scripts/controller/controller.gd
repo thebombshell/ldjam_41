@@ -22,6 +22,8 @@ const sound_perfect = preload("res://sfx/dialogue-ping-01.wav");
 const sound_correct = preload("res://sfx/dialogue-ping-02.wav");
 const sound_wrong = preload("res://sfx/dialogue-ping-03.wav");
 const sound_wierd = preload("res://sfx/dialogue-ping-04.wav");
+const sound_fail = preload("res://sfx/buy-01.wav");
+const sound_success = preload("res://sfx/doot.wav");
 const sound_doot = preload("res://sfx/doot.wav");
 const scroll_dist = 100.0;
 const scroll_speed = 20.0;
@@ -258,9 +260,20 @@ func on_right_click(point):
 
 func action_button(index):
 	
+	var success = false;
 	for body in selected_bodies:
 		
-		body.selectable_on_action(action_buttons[index].text);
+		success = true if body.selectable_on_action(action_buttons[index].text) else success;
+	
+	if success:
+		
+		cursor_audio.stream = sound_success;
+		cursor_audio.play();
+	else:
+		
+		cursor_audio.stream = sound_fail;
+		cursor_audio.play();
+	
 	return;
 
 func option_button(index):

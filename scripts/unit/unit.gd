@@ -70,6 +70,7 @@ func on_unit_damage(damage_amount):
 func traverse_path(delta):
 	
 	if path == null:
+		
 		return;
 	
 	if path_traversed < path.size():

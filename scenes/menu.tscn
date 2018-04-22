@@ -2,7 +2,7 @@
 
 [ext_resource path="res://scripts/menu/test_scene_button.gd" type="Script" id=1]
 
-[node name="Panel" type="Panel"]
+[node name="Panel" type="Panel" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -33,7 +33,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 0
-_sections_unfolded = [ "Margin", "Rect" ]
+_sections_unfolded = [ "Margin", "Rect", "Size Flags" ]
 
 [node name="Label" type="Label" parent="VBoxContainer" index="0"]
 
@@ -50,13 +50,27 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 3.0
-text = "Imagine this was a decent menu then select a level!"
-align = 1
+text = "So this main menu isn't much, but I'll use this chance to introduce you to the game;
+
+Realtime Strategy Dating Sim
+
+You're on a date in a castle, your date is rich and funding your war, keep her happy to get more gold, converse with your date to the right, audio cuse and reaction text will clue you in to whether you are impressing or upsetting her. Ignoring her will upset her, if she becomes upset enough she will damage your base from the inside.
+Left click or drag Left click to select your base (the textured castle) and or units, Right click to move and or set rally for your units. Units abilities are displayed and selectable at the bottom. While selected units display their damage range, attacks are passive.
+Your Units are:
+
+- The Worker (Costs 50 Gold) - fast, weak, low dps, but with the ability to saccrifice itself to heal a nearby units
+- The Ranger (Costs 100 Gold) - slow, weak, high dps, with an outstanding range
+- The Tank (Costs 200 Gold) - slow, strong, high dps, close range, with the ability to siege / destroy enemy Nests
+
+Destroy all enemy nests to win, a nest will only be destroyed when a tank sieges without any other enemies in range.
+
+Select A Level:"
 valign = 1
+autowrap = true
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-_sections_unfolded = [ "Anchor", "Size Flags" ]
+_sections_unfolded = [ "Anchor", "Margin" ]
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" index="1"]
 
@@ -82,6 +96,59 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
+margin_right = 424.0
+margin_bottom = 179.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Single Target"
+flat = false
+align = 1
+script = ExtResource( 1 )
+_sections_unfolded = [ "Size Flags" ]
+scene_file = "res://scenes/test_scene.tscn"
+
+[node name="Button2" type="Button" parent="VBoxContainer/HBoxContainer" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 428.0
+margin_right = 852.0
+margin_bottom = 179.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "All Fours"
+flat = false
+align = 1
+script = ExtResource( 1 )
+scene_file = "res://scenes/danger_in_the_corners.tscn"
+
+[node name="Button3" type="Button" parent="VBoxContainer/HBoxContainer" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 856.0
 margin_right = 1280.0
 margin_bottom = 179.0
 rect_pivot_offset = Vector2( 0, 0 )
@@ -95,10 +162,11 @@ toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
 group = null
-text = "test"
+text = "Danger Corridor"
 flat = false
 align = 1
 script = ExtResource( 1 )
 _sections_unfolded = [ "Size Flags" ]
+scene_file = "res://scenes/danger_down_the_corridor.tscn"
 
 

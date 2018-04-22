@@ -49,14 +49,31 @@ skeleton = NodePath("..")
 material/0 = ExtResource( 3 )
 _sections_unfolded = [ "Transform", "material" ]
 
-[node name="CollisionShape" type="CollisionShape" parent="." index="1"]
+[node name="MeshInstance2" type="MeshInstance" parent="." index="1"]
+
+transform = Transform( 0.25, 0, 0, 0, 0.25, 0, 0, 0, 1, 0.5, 0.5, 0.5 )
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+mesh = ExtResource( 2 )
+skeleton = NodePath("..")
+material/0 = ExtResource( 3 )
+_sections_unfolded = [ "Transform", "material" ]
+
+[node name="CollisionShape" type="CollisionShape" parent="." index="2"]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0 )
 shape = SubResource( 1 )
 disabled = false
 _sections_unfolded = [ "Transform" ]
 
-[node name="Area" type="Area" parent="." index="2"]
+[node name="Area" type="Area" parent="." index="3"]
 
 input_ray_pickable = false
 input_capture_on_drag = false
@@ -86,7 +103,7 @@ shape = SubResource( 2 )
 disabled = false
 _sections_unfolded = [ "Transform" ]
 
-[node name="HealthBackground" type="Sprite3D" parent="." index="3"]
+[node name="HealthBackground" type="Sprite3D" parent="." index="4"]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 1.3, 0 )
 layers = 1
@@ -118,7 +135,7 @@ region_enabled = false
 region_rect = Rect2( 0, 0, 0, 0 )
 _sections_unfolded = [ "Flags", "Transform" ]
 
-[node name="HealthForeground" type="Sprite3D" parent="." index="4"]
+[node name="HealthForeground" type="Sprite3D" parent="." index="5"]
 
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 1.3, 0.01 )
 layers = 1
@@ -150,7 +167,7 @@ region_enabled = true
 region_rect = Rect2( 0, 0, 64, 16 )
 _sections_unfolded = [ "Flags", "Region", "Transform" ]
 
-[node name="RangeIndicator" type="MeshInstance" parent="." index="5"]
+[node name="RangeIndicator" type="MeshInstance" parent="." index="6"]
 
 visible = false
 layers = 1
