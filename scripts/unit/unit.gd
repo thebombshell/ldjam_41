@@ -13,6 +13,7 @@ onready var nav = get_node("/root/Scene/World");
 onready var mesh = get_node("MeshInstance");
 onready var area = get_node("Area");
 onready var area_shape = get_node("Area/CollisionShape");
+onready var health = get_node("HealthForeground");
 
 # unit vars
 
@@ -21,8 +22,9 @@ var target = null;
 var path = null;
 var path_traversed = 0;
 var unit_speed = 200.0;
-var unit_health = 50.0;
-var unit_range = 2.0;
+var unit_max_health = 100.0;
+var unit_health = 100.0;
+var unit_range = 5.0;
 var unit_damage = 20.0;
 var slow_timer = 0.0;
 
@@ -51,6 +53,11 @@ func selectable_give_order(new_order, new_target):
 func on_unit_damage(damage_amount):
 	
 	unit_health -= damage_amount;
+	health.region_rect.size.x = (unit_health / unit_max_health) * 64.0;
+	if unit_health < 0.0:
+		
+		selectable_destroy();
+	
 	return;
 
 # path helpers
@@ -63,30 +70,14 @@ func traverse_path(delta):
 	if path_traversed < path.size():
 		
 		slow_timer -= delta;
-		var dist = unit_speed * delta * (0.5 if slow_timer > 0.0 else 1.0);
-		var next_position = nav.get_closest_point_to_segment(path[path_traversed] - Vector3(0.0, 0.25, 0.0), path[path_traversed] + Vector3(0.0, 0.25, 0.0));
+		
+		var next_position = nav.get_closest_point_to_segment(path[path_traversed] - Vector3(0.0, 0.1, 0.0), path[path_traversed] + Vector3(0.0, 0.1, 0.0));
 		var direction = (next_position - translation).normalized();
-		if slow_timer > 1.0:
+		var dist = unit_speed * delta * (0.5 if slow_timer > 0.0 else 1.0);
+		var result = move_and_slide(direction * dist, Vector3(0.0, 1.0, 0.0));
+		if result.length() > dist * 0.5:
 			
-			var normal = Vector3(0.0, 0.0, 0.0);
-			for body in area.get_overlapping_bodies():
-				
-				if body != self && body is Selectable:
-					
-					normal += (translation - body.translation).normalized();
-			if slow_timer > 5.0:
-				
-				direction = direction.cross(Vector3(0.0, 1.0, 0.0));
-			elif slow_timer > 2.5:
-				
-				direction = normal.normalized();
-			else:
-				
-				direction = direction + normal.normalized();
-		var result = move_and_slide(direction.normalized() * dist, Vector3(0.0, 1.0, 0.0));
-		if result.length() < dist * 0.5:
-			
-			slow_timer += delta;
+			slow_timer = 0.1;
 			if slow_timer > 10.0:
 				
 				slow_timer = 0.0;
@@ -138,12 +129,12 @@ func process_orders(delta):
 
 func process_damage(delta):
 	
-	area_shape.shape.radius = unit_range;
 	for body in area.get_overlapping_bodies():
 		
-		if body.has_method("on_enemy_damge"):
+		if body.has_method("on_enemy_damage"):
 			
-			body.on_damage += unit_damage * delta;
+			body.on_enemy_damage(unit_damage * delta);
+	area_shape.shape.radius = unit_range;
 	
 	return;
 

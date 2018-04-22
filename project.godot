@@ -18,7 +18,6 @@ config/icon="res://icon.png"
 [debug]
 
 settings/stdout/print_fps=false
-settings/stdout/verbose_stdout=true
 
 [display]
 
@@ -74,10 +73,11 @@ limits/debugger_stdout/max_errors_per_frame=100
 
 [physics]
 
-common/enable_object_picking=false
+common/physics_fps=30
 
 [rendering]
 
+threads/thread_model=2
 quality/shadows/filter_mode=0
 quality/reflections/texture_array_reflections=false
 quality/reflections/high_quality_ggx=false

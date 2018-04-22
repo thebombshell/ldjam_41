@@ -70,7 +70,6 @@ func structure_spawn_unit(unit_node):
 
 func _ready():
 	
-	collision.disabled = true;
 	return;
 
 func _process(delta):

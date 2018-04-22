@@ -21,9 +21,7 @@ const select_project_dist = 32.0;
 # child objects
 
 onready var camera = get_node("Camera");
-onready var select = get_node("Select");
-onready var select_box = get_node("Select/Box");
-onready var ui_select_box = get_node("UI/SelectBox");
+onready var select_box = get_node("UI/SelectBox");
 onready var center_box = get_node("UI/Container/Center/Control");
 onready var action_buttons = [
 	get_node("UI/Container/Bottom/Action_0"),
@@ -64,8 +62,7 @@ func deselect_body(body):
 
 func process_screen_scroll(delta):
 
-	var viewport = get_viewport();
-	var mouse_pos = viewport.get_mouse_position();
+	var mouse_pos = get_viewport().get_mouse_position();
 	
 	var rect = center_box.get_global_rect();
 	if !rect.has_point(mouse_pos):
@@ -76,18 +73,34 @@ func process_screen_scroll(delta):
 	
 	var dir = Vector2(0.0, 0.0);
 	
-	if mouse_pos.x < rect.position.x + scroll_dist:
+	if Input.is_mouse_button_pressed(BUTTON_MIDDLE):
 		
-		dir.x -= 1.0;
-	elif mouse_pos.x > rect.end.x - scroll_dist:
+		if mouse_pos.x < rect.position.x + scroll_dist:
+			
+			dir.x -= 1.0;
+		elif mouse_pos.x > rect.end.x - scroll_dist:
+			
+			dir.x += 1.0;
+		if mouse_pos.y < rect.position.y + scroll_dist:
+			
+			dir.y -= 1.0;
+		elif mouse_pos.y > rect.end.y - scroll_dist:
+			
+			dir.y += 1.0;
+	else:
 		
-		dir.x += 1.0;
-	if mouse_pos.y < rect.position.y + scroll_dist:
-		
-		dir.y -= 1.0;
-	elif mouse_pos.y > rect.end.y - scroll_dist:
-		
-		dir.y += 1.0;
+		if Input.is_key_pressed(KEY_A):
+			
+			dir.x -= 1.0;
+		elif Input.is_key_pressed(KEY_D):
+			
+			dir.x += 1.0;
+		if Input.is_key_pressed(KEY_W):
+			
+			dir.y -= 1.0;
+		elif Input.is_key_pressed(KEY_S):
+			
+			dir.y += 1.0;
 	
 	if dir.x > 0.0:
 		if dir.y > 0.0:
@@ -123,9 +136,9 @@ func center_input(event):
 			if event.button_index == BUTTON_LEFT:
 
 				start = get_viewport().get_mouse_position();
-				ui_select_box.rect_position = start;
-				ui_select_box.rect_size = Vector2(1.0, 1.0);
-				ui_select_box.visible = true;
+				select_box.rect_position = start;
+				select_box.rect_size = Vector2(1.0, 1.0);
+				select_box.visible = true;
 			elif event.button_index == BUTTON_RIGHT:
 
 				pass;
@@ -133,7 +146,7 @@ func center_input(event):
 
 			if event.button_index == BUTTON_LEFT:
 
-				ui_select_box.visible = false;
+				select_box.visible = false;
 				end = get_viewport().get_mouse_position();
 				var select_rect = Rect2(Vector2(min(start.x, end.x), min(start.y, end.y)), Vector2(0.0, 0.0));
 				select_rect.end = Vector2(max(start.x, end.x), max(start.y, end.y));
@@ -170,12 +183,16 @@ func center_input(event):
 				
 			elif event.button_index == BUTTON_RIGHT:
 				
-				var origin = camera.project_ray_origin(get_viewport().get_mouse_position());
-				var normal = camera.project_ray_normal(get_viewport().get_mouse_position());
+				var mouse = get_viewport().get_mouse_position();
+				var origin = camera.project_ray_origin(mouse);
+				var normal = camera.project_ray_normal(mouse);
 				var state = get_world().direct_space_state;
-				var result = state.intersect_ray(origin, origin + normal * 128.0);
+				var result = state.intersect_ray(origin + normal, origin + normal * 128.0, [], 2);
 				if !result.empty():
 					var point = result.position + Vector3(0.0, 1.0, 0.0);
+					print(origin);
+					print(normal);
+					print(point);
 					for body in selected_bodies:
 						
 						body.selectable_move_order(point);
@@ -185,8 +202,8 @@ func center_input(event):
 		if  Input.is_action_pressed("mouse_left"):
 			
 			end = get_viewport().get_mouse_position();
-			ui_select_box.rect_position = Vector2(min(start.x, end.x), min(start.y, end.y));
-			ui_select_box.rect_size = (start - end).abs();
+			select_box.rect_position = Vector2(min(start.x, end.x), min(start.y, end.y));
+			select_box.rect_size = (start - end).abs();
 	
 	return;
 
