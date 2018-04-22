@@ -310,11 +310,14 @@ func update_date():
 	
 	current_scenario = Dialogue.SCENARIOS[randi()%Dialogue.SCENARIOS.size()];
 	dialogue.text = current_scenario[0];
+	var pool = [1, 2, 3, 4];
 	var i = 0;
 	while i < 4:
 		
 		option_buttons[i].disabled = false;
-		option_buttons[i].text = current_scenario[i + 1];
+		var index = randi()%pool.size();
+		option_buttons[i].text = current_scenario[pool[index]];
+		pool.remove(index);
 		i += 1;
 	
 	return;

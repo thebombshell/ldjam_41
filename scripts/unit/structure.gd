@@ -18,12 +18,30 @@ onready var world = get_node("/root/Scene/World");
 
 onready var mesh = get_node("MeshInstance");
 onready var collision = get_node("CollisionShape");
+onready var health = get_node("HealthForeground");
 
 # structure vars
 
 var order = 0;
 var target = null;
 var rally_point = null;
+
+var unit_max_health = 1000.0;
+var unit_health = 1000.0;
+
+func on_unit_damage(damage_amount):
+	
+	unit_health -= damage_amount;
+	if unit_health > unit_max_health:
+		
+		unit_health = unit_max_health;
+	health.region_rect.size.x = (unit_health / unit_max_health) * 64.0;
+	if unit_health < 0.0:
+		
+		#lose game
+		unit_health = 0.0;
+	
+	return;
 
 # selectable functionality
 

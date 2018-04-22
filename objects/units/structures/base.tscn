@@ -1,8 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scripts/unit/structure.gd" type="Script" id=1]
 [ext_resource path="res://models/primatives/primative_dome.obj" type="ArrayMesh" id=2]
 [ext_resource path="res://materials/unit_material.tres" type="Material" id=3]
+[ext_resource path="res://textures/health_bar_bg.png" type="Texture" id=4]
+[ext_resource path="res://textures/health_bar_fg.png" type="Texture" id=5]
 
 [sub_resource type="SphereShape" id=1]
 
@@ -46,5 +48,69 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0 )
 shape = SubResource( 1 )
 disabled = false
 _sections_unfolded = [ "Transform" ]
+
+[node name="HealthBackground" type="Sprite3D" parent="." index="2"]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.5, 0 )
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+centered = false
+offset = Vector2( 0, 0 )
+flip_h = false
+flip_v = false
+modulate = Color( 1, 1, 1, 1 )
+opacity = 1.0
+pixel_size = 0.04
+axis = 2
+transparent = true
+shaded = false
+double_sided = true
+alpha_cut = 1
+texture = ExtResource( 4 )
+vframes = 1
+hframes = 1
+frame = 0
+region_enabled = false
+region_rect = Rect2( 0, 0, 0, 0 )
+_sections_unfolded = [ "Flags", "Transform" ]
+
+[node name="HealthForeground" type="Sprite3D" parent="." index="3"]
+
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.5, 0.01 )
+layers = 1
+material_override = null
+cast_shadow = 1
+extra_cull_margin = 0.0
+use_in_baked_light = false
+lod_min_distance = 0.0
+lod_min_hysteresis = 0.0
+lod_max_distance = 0.0
+lod_max_hysteresis = 0.0
+centered = false
+offset = Vector2( 0, 0 )
+flip_h = false
+flip_v = false
+modulate = Color( 1, 1, 1, 1 )
+opacity = 1.0
+pixel_size = 0.04
+axis = 2
+transparent = true
+shaded = false
+double_sided = true
+alpha_cut = 1
+texture = ExtResource( 5 )
+vframes = 1
+hframes = 1
+frame = 0
+region_enabled = true
+region_rect = Rect2( 0, 0, 64, 16 )
+_sections_unfolded = [ "Flags", "Region", "Transform" ]
 
 
