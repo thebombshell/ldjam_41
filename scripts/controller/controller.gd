@@ -12,6 +12,7 @@ const cursor_r = preload("res://textures/cursor_r.png");
 const cursor_b = preload("res://textures/cursor_b.png");
 const cursor_l = preload("res://textures/cursor_l.png");
 const Selectable = preload("res://scripts/unit/selectable.gd");
+const Dialogue = preload("res://scripts/controller/dialogue.gd");
 const scroll_dist = 100.0;
 const scroll_speed = 20.0;
 const select_project_dist = 32.0;
@@ -32,6 +33,16 @@ onready var action_buttons = [
 	get_node("UI/Container/Bottom/Action_5"),
 	get_node("UI/Container/Bottom/Action_6"),
 	get_node("UI/Container/Bottom/Action_7")];
+onready var gold_label = get_node("UI/Container/Top/Resources/HBoxContainer/Gold");
+onready var tech_label = get_node("UI/Container/Top/Resources/HBoxContainer/Tech");
+onready var happy_label = get_node("UI/Container/Top/Resources/HBoxContainer/Happiness");
+onready var portrait = get_node("UI/Container/Center/Panel/VBoxContainer/TextureRect");
+onready var dialogue = get_node("UI/Container/Center/Panel/VBoxContainer/Label");
+onready var option_buttons = [
+	get_node("UI/Container/Center/Panel/VBoxContainer/Option_0"),
+	get_node("UI/Container/Center/Panel/VBoxContainer/Option_1"),
+	get_node("UI/Container/Center/Panel/VBoxContainer/Option_2"),
+	get_node("UI/Container/Center/Panel/VBoxContainer/Option_3")];
 
 # selections vars
 
@@ -40,6 +51,20 @@ var end = Vector2(0.0, 0.0);
 var selected_bodies = Array();
 var selected_actions = Array();
 var selectables = Array();
+
+# stat vars
+
+var gold = 100;
+var tech = 0;
+var happy = 50;
+var payout_timer = 3.0;
+
+# scenario vars
+
+var current_scenario = null;
+var tech_streak = 0;
+var wierd = 0;
+var stall_timer = 3.0;
 
 func select_body(body):
 
@@ -214,6 +239,86 @@ func action_button(index):
 		body.selectable_on_action(action_buttons[index].text);
 	return;
 
+func option_button(index):
+	
+	var option = option_buttons[index].text;
+	if option == current_scenario[1]:
+		
+		tech_streak += 1;
+		happy += 20;
+		dialogue.text = "";
+	elif option == current_scenario[2]:
+		
+		tech_streak = 0;
+		happy += 10;
+		dialogue.text = "hmmm";
+	elif option == current_scenario[3]:
+		
+		happy -= 5;
+		dialogue.text = "shut up.";
+	elif option == current_scenario[4]:
+		
+		happy -= 10;
+		wierd += 1;
+		dialogue.text = "Wait WHAT!?";
+	stall_date();
+	
+	return;
+
+func process_date(delta):
+	
+	if stall_timer > 0.0:
+		
+		stall_timer -= delta;
+		if stall_timer < 0.0:
+			
+			update_date();
+	
+	return;
+
+func process_payout(delta):
+	
+	payout_timer -= delta;
+	if payout_timer < 0.0:
+		
+		payout_timer = 3.0;
+		if happy >= 5:
+			
+			gold += happy;
+			happy -= 5;
+	
+	return;
+
+func process_stats():
+	
+	gold_label.text = "gold: " + str(gold);
+	tech_label.text = "tech: " + str(tech);
+	happy = 0 if happy < 0 else happy;
+	happy_label.text = "happy: " + str(happy);
+	return;
+
+func stall_date():
+	
+	for button in option_buttons:
+		
+		button.disabled = true;
+	stall_timer = 3.0;
+	
+	return;
+
+func update_date():
+	
+	current_scenario = Dialogue.SCENARIOS[randi()%Dialogue.SCENARIOS.size()];
+	dialogue.text = current_scenario[0];
+	var i = 0;
+	while i < 4:
+		
+		option_buttons[i].disabled = false;
+		option_buttons[i].text = current_scenario[i + 1];
+		i += 1;
+	
+	return;
+
 func _ready():
 	
 	center_box.connect("gui_input", self, "center_input");
@@ -222,10 +327,18 @@ func _ready():
 		
 		action_buttons[i].connect("pressed", self, "action_button", [i]);
 		i += 1;
+	i = 0;
+	while i < option_buttons.size():
+		
+		option_buttons[i].connect("pressed", self, "option_button", [i]);
+		i += 1;
+	
 	return;
 
 func _process(delta):
 
 	process_screen_scroll(delta);
-
+	process_payout(delta);
+	process_date(delta);
+	process_stats();
 	return;

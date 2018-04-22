@@ -14,6 +14,7 @@ onready var mesh = get_node("MeshInstance");
 onready var area = get_node("Area");
 onready var area_shape = get_node("Area/CollisionShape");
 onready var health = get_node("HealthForeground");
+onready var range_indicator = get_node("RangeIndicator");
 
 # unit vars
 
@@ -33,6 +34,7 @@ var slow_timer = 0.0;
 func selectable_set_selected(is_selected):
 	
 	mesh.set_surface_material(0, SELECTED_MAT if is_selected else DEFAULT_MAT);
+	range_indicator.visible = is_selected;
 	return;
 
 func selectable_give_order(new_order, new_target):
@@ -53,6 +55,9 @@ func selectable_give_order(new_order, new_target):
 func on_unit_damage(damage_amount):
 	
 	unit_health -= damage_amount;
+	if unit_health > unit_max_health:
+		
+		unit_health = unit_max_health;
 	health.region_rect.size.x = (unit_health / unit_max_health) * 64.0;
 	if unit_health < 0.0:
 		
@@ -129,12 +134,20 @@ func process_orders(delta):
 
 func process_damage(delta):
 	
+	var enemy = null;
 	for body in area.get_overlapping_bodies():
 		
 		if body.has_method("on_enemy_damage"):
 			
-			body.on_enemy_damage(unit_damage * delta);
+			if enemy == null || body.unit_health > enemy.unit_health:
+				
+				enemy = body;
+	
+	if enemy != null:
+		
+		enemy.on_enemy_damage(unit_damage * delta);
 	area_shape.shape.radius = unit_range;
+	range_indicator.scale = Vector3(unit_range, 1.0, unit_range);
 	
 	return;
 

@@ -1,5 +1,9 @@
 extends KinematicBody
 
+# absolute objects
+
+onready var nav = get_node("/root/Scene/World");
+
 # child objects
 
 onready var area = get_node("Area");
@@ -26,16 +30,27 @@ func on_enemy_damage(damage_amount):
 
 func process_damage(delta):
 	
+	var enemy = null;
 	for body in area.get_overlapping_bodies():
 		
 		if body.has_method("on_unit_damage"):
 			
-			body.on_unit_damage(unit_damage * delta);
-	area_shape.shape.radius = unit_range;
+			if enemy == null || body.unit_health > enemy.unit_health:
+				
+				enemy = body;
+	
+	if enemy != null:
+		
+		enemy.on_unit_damage(unit_damage * delta);
+	
+	return;
+
+func process_movement(delta):
 	
 	return;
 
 func _process(delta):
 	
+	process_movement(delta);
 	process_damage(delta);
 	return;

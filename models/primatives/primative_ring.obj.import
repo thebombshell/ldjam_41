@@ -1,0 +1,20 @@
+[remap]
+
+importer="wavefront_obj"
+type="Mesh"
+path="res://.import/primative_ring.obj-56cf4e5af7f52a28007bf05ad9545c68.mesh"
+
+[deps]
+
+files=[ "res://.import/primative_ring.obj-56cf4e5af7f52a28007bf05ad9545c68.mesh" ]
+
+source_file="res://models/primatives/primative_ring.obj"
+source_md5="4f2ad2003e804ab840576d822b8470fe"
+
+dest_files=[ "res://.import/primative_ring.obj-56cf4e5af7f52a28007bf05ad9545c68.mesh", "res://.import/primative_ring.obj-56cf4e5af7f52a28007bf05ad9545c68.mesh" ]
+dest_md5="4396c6aec68c470f22297cb3cdcc4c05"
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3( 1, 1, 1 )

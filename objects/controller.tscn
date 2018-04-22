@@ -34,7 +34,7 @@ anti_aliasing = true
 anti_aliasing_size = 1
 _sections_unfolded = [ "Border", "Border Width" ]
 
-[node name="Controller" type="Spatial"]
+[node name="Controller" type="Spatial" index="0"]
 
 script = ExtResource( 1 )
 
@@ -100,7 +100,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 2 )
 alignment = 0
-_sections_unfolded = [ "Anchor", "Grow Direction", "Rect", "Visibility" ]
 
 [node name="Top" type="HBoxContainer" parent="UI/Container" index="0"]
 
@@ -114,11 +113,10 @@ rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
 mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
+size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 2 )
 alignment = 0
-_sections_unfolded = [ "Margin", "Rect", "Size Flags" ]
 
 [node name="Resources" type="Panel" parent="UI/Container/Top" index="0"]
 
@@ -133,10 +131,95 @@ rect_clip_content = false
 mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
-size_flags_vertical = 1
+size_flags_vertical = 3
 theme = ExtResource( 2 )
 custom_styles/panel = ExtResource( 3 )
-_sections_unfolded = [ "custom_styles" ]
+_sections_unfolded = [ "Grow Direction", "custom_styles" ]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Container/Top/Resources" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 1280.0
+margin_bottom = 50.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+alignment = 0
+_sections_unfolded = [ "Anchor", "Margin" ]
+
+[node name="Gold" type="Label" parent="UI/Container/Top/Resources/HBoxContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 424.0
+margin_bottom = 50.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Gold: 100"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Size Flags" ]
+
+[node name="Tech" type="Label" parent="UI/Container/Top/Resources/HBoxContainer" index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 428.0
+margin_right = 852.0
+margin_bottom = 50.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Technique: 0"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Size Flags" ]
+
+[node name="Happiness" type="Label" parent="UI/Container/Top/Resources/HBoxContainer" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 856.0
+margin_right = 1280.0
+margin_bottom = 50.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Happiness: 100"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+_sections_unfolded = [ "Size Flags" ]
 
 [node name="Center" type="HBoxContainer" parent="UI/Container" index="1"]
 
@@ -151,12 +234,12 @@ rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
 mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
+size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 12.0
 theme = ExtResource( 2 )
 alignment = 0
-_sections_unfolded = [ "Size Flags" ]
+_sections_unfolded = [ "Margin", "Size Flags" ]
 
 [node name="Control" type="Control" parent="UI/Container/Center" index="0"]
 
@@ -191,17 +274,15 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_styles/panel = ExtResource( 3 )
-_sections_unfolded = [ "Size Flags", "custom_styles" ]
+_sections_unfolded = [ "Rect", "custom_styles" ]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/Container/Center/Panel" index="0"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 4.0
-margin_right = 259.0
+margin_right = 255.0
 margin_bottom = 610.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
@@ -210,7 +291,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 alignment = 0
-_sections_unfolded = [ "Size Flags" ]
+_sections_unfolded = [ "Rect" ]
 
 [node name="TextureRect" type="TextureRect" parent="UI/Container/Center/Panel/VBoxContainer" index="0"]
 
@@ -219,13 +300,14 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_right = 255.0
-margin_bottom = 303.0
+margin_bottom = 236.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 11
 size_flags_vertical = 11
+size_flags_stretch_ratio = 4.0
 texture = ExtResource( 4 )
 expand = true
 stretch_mode = 6
@@ -237,22 +319,129 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 307.0
+margin_top = 240.0
 margin_right = 255.0
-margin_bottom = 610.0
+margin_bottom = 358.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
 text = "*your date has begun*"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+_sections_unfolded = [ "Size Flags" ]
+
+[node name="Option_0" type="Button" parent="UI/Container/Center/Panel/VBoxContainer" index="2"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 362.0
+margin_right = 255.0
+margin_bottom = 421.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 11
+size_flags_vertical = 11
+disabled = true
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Option"
+flat = false
+align = 1
+_sections_unfolded = [ "Size Flags" ]
+
+[node name="Option_1" type="Button" parent="UI/Container/Center/Panel/VBoxContainer" index="3"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 425.0
+margin_right = 255.0
+margin_bottom = 484.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 11
+size_flags_vertical = 11
+disabled = true
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Option"
+flat = false
+align = 1
+_sections_unfolded = [ "Size Flags" ]
+
+[node name="Option_2" type="Button" parent="UI/Container/Center/Panel/VBoxContainer" index="4"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 488.0
+margin_right = 255.0
+margin_bottom = 547.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 11
+size_flags_vertical = 11
+disabled = true
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Option"
+flat = false
+align = 1
+_sections_unfolded = [ "Size Flags" ]
+
+[node name="Option_3" type="Button" parent="UI/Container/Center/Panel/VBoxContainer" index="5"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 551.0
+margin_right = 255.0
+margin_bottom = 610.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+focus_mode = 2
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 11
+size_flags_vertical = 11
+disabled = true
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+group = null
+text = "Option"
+flat = false
+align = 1
+_sections_unfolded = [ "Size Flags" ]
 
 [node name="Bottom" type="HBoxContainer" parent="UI/Container" index="2"]
 
+editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0

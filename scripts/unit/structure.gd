@@ -6,6 +6,9 @@ const SELECTED_MAT = preload("res://materials/unit_select_material.tres");
 # constants
 
 const Unit = preload("res://objects/units/unit.tscn");
+const Worker = preload("res://objects/units/worker.tscn");
+const Tank = preload("res://objects/units/tank.tscn");
+const Ranger = preload("res://objects/units/ranger.tscn");
 
 # absolute objects
 
@@ -42,7 +45,7 @@ func selectable_give_order(new_order, new_target):
 
 func selectable_get_action_names():
 	
-	var output = ["Build Unit"];
+	var output = ["Build Worker (50G)", "Build Ranger (100G)", "Build Tank (200G)"];
 	return output;
 
 func selectable_on_action(action_name):
@@ -50,9 +53,26 @@ func selectable_on_action(action_name):
 	if action_name == "Destroy":
 		print("I WILL NEVER DIE!!!");
 	
-	if action_name == "Build Unit":
+	if action_name == "Build Worker (50G)":
 		
-		structure_spawn_unit(Unit);
+		if controller.gold >= 50:
+			
+			controller.gold -= 50;
+			structure_spawn_unit(Worker);
+	
+	if action_name == "Build Ranger (100G)":
+		
+		if controller.gold >= 100:
+			
+			controller.gold -= 100;
+			structure_spawn_unit(Ranger);
+	
+	if action_name == "Build Tank (200G)":
+		
+		if controller.gold >= 200:
+			
+			controller.gold -= 200;
+			structure_spawn_unit(Tank);
 	
 	return;
 

@@ -25,6 +25,7 @@ func selectable_give_order(order_index, order_target):
 func selectable_get_action_names():
 	
 	var output = ["Destroy"];
+	
 	return output;
 
 func selectable_on_action(action_name):
